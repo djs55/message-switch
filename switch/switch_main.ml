@@ -37,11 +37,14 @@ open Clock
 open Switch
 
 let port = ref 8080
-let ip = ref "0.0.0.0"
+let ip = ref "127.0.0.1"
 
 open Cohttp_lwt_unix
+module Server_core = Cohttp_lwt.Make_server
+  (Cohttp_lwt_unix_io)(Request)(Response)(Cohttp_lwt_unix_net)
+open Server_core
 
-let make_server () =
+let make_server sockaddr s =
 	info "Started server on localhost:%d" !port;
 
 	let (_: 'a) = logging_thread () in
@@ -81,9 +84,12 @@ let make_server () =
 			end in
 
 	info "Message switch starting";
-	let config = { Cohttp_lwt_unix.Server.callback; conn_closed } in
-	Cohttp_lwt_unix.Server.create ~address:!ip ~port:!port config
-    
+	let config = { Server_core.callback; conn_closed } in
+	while_lwt true do
+		Lwt_unix.accept s >>=
+		Cohttp_lwt_unix_net.Tcp_server.process_accept ~sockaddr ~timeout:None (Server_core.callback config)
+	done
+
 let _ =
 	let daemonize = ref false in
 	let pidfile = ref None in
@@ -95,9 +101,22 @@ let _ =
 	] (fun x -> Printf.fprintf stderr "Ignoring: %s" x)
 		"A simple message switch";
 
+	(* Bind the listening socket before we daemonize so anyone starting
+	   after us doesn't get an ECONNREFUSED *)
+	let s = Unix.socket Unix.PF_INET Unix.SOCK_STREAM 0 in
+	Unix.setsockopt s Unix.TCP_NODELAY false;
+	Unix.setsockopt s Unix.SO_REUSEADDR true;
+	let sockaddr = Unix.ADDR_INET(Unix.inet_addr_of_string !ip, !port) in
+	( try Unix.bind s sockaddr
+	  with e ->
+	    error "Failed to bind socket to %s:%d (%s)" !ip !port (Printexc.to_string e);
+	    raise e );
+	Unix.listen s 5;
+
 	if !daemonize
 	then Lwt_daemon.daemonize ();
 
+	let s = Lwt_unix.of_unix_file_descr s in
 	let (_ : unit Lwt.t) =
 		match !pidfile with
 		| None -> return ()
@@ -108,5 +127,5 @@ let _ =
 				Lwt_io.flush oc
 			) in
 
-	Lwt_unix.run (make_server ()) 
+	Lwt_unix.run (make_server sockaddr s) 
 
