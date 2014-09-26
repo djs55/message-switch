@@ -230,7 +230,7 @@ module type S = sig
   val whoami: unit -> string
 
   module IO: sig
-    include Cohttp.IO.S
+    include Cohttp.S.IO
 
     val map: ('a -> 'b) -> 'a t -> 'b t
 
@@ -270,7 +270,7 @@ module type S = sig
   end
 end
 
-module Connection = functor(IO: Cohttp.IO.S) -> struct
+module Connection = functor(IO: Cohttp.S.IO) -> struct
 	open IO
 	module Request = Cohttp.Request.Make(IO)
 	module Response = Cohttp.Response.Make(IO)
