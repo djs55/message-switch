@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 877151eb5f62fd171a9c1cea83ac17d7)
+# DO NOT EDIT (digest: 2de8f85431f2b8f466b15ac653ad9550)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -27,7 +27,6 @@ true: annot, bin_annot
 <core/*.ml{,i,y}>: pkg_cohttp.async
 # Library message_switch_unix
 "core/message_switch_unix.cmxs": use_message_switch_unix
-<core/*.ml{,i,y}>: pkg_bisect
 <core/*.ml{,i,y}>: pkg_cohttp
 <core/*.ml{,i,y}>: pkg_re
 <core/*.ml{,i,y}>: pkg_re.str
@@ -45,7 +44,6 @@ true: annot, bin_annot
 "switch/logging.cmx": for-pack(Message_switch_server)
 "switch/switch.cmx": for-pack(Message_switch_server)
 # Executable m_cli
-<cli/main.{native,byte}>: pkg_bisect
 <cli/main.{native,byte}>: pkg_cmdliner
 <cli/main.{native,byte}>: pkg_cohttp
 <cli/main.{native,byte}>: pkg_re
@@ -57,7 +55,6 @@ true: annot, bin_annot
 <cli/main.{native,byte}>: pkg_unix
 <cli/main.{native,byte}>: use_message_switch
 <cli/main.{native,byte}>: use_message_switch_unix
-<cli/*.ml{,i,y}>: pkg_bisect
 <cli/*.ml{,i,y}>: pkg_cmdliner
 <cli/*.ml{,i,y}>: pkg_cohttp
 <cli/*.ml{,i,y}>: pkg_re
@@ -71,7 +68,6 @@ true: annot, bin_annot
 <cli/*.ml{,i,y}>: use_message_switch_unix
 <cli/main.{native,byte}>: custom
 # Executable link_test
-<core_test/link_test_main.{native,byte}>: pkg_bisect
 <core_test/link_test_main.{native,byte}>: pkg_cohttp
 <core_test/link_test_main.{native,byte}>: pkg_cohttp.lwt
 <core_test/link_test_main.{native,byte}>: pkg_lwt
@@ -86,7 +82,6 @@ true: annot, bin_annot
 <core_test/link_test_main.{native,byte}>: use_message_switch_lwt
 <core_test/link_test_main.{native,byte}>: custom
 # Executable client
-<core_test/client_main.{native,byte}>: pkg_bisect
 <core_test/client_main.{native,byte}>: pkg_cohttp
 <core_test/client_main.{native,byte}>: pkg_cohttp.lwt
 <core_test/client_main.{native,byte}>: pkg_lwt
@@ -103,7 +98,6 @@ true: annot, bin_annot
 # Executable client_async
 <core_test/client_async_main.{native,byte}>: pkg_async
 <core_test/client_async_main.{native,byte}>: pkg_async_unix
-<core_test/client_async_main.{native,byte}>: pkg_bisect
 <core_test/client_async_main.{native,byte}>: pkg_cohttp
 <core_test/client_async_main.{native,byte}>: pkg_cohttp.async
 <core_test/client_async_main.{native,byte}>: pkg_re
@@ -116,7 +110,6 @@ true: annot, bin_annot
 <core_test/client_async_main.{native,byte}>: use_message_switch_async
 <core_test/client_async_main.{native,byte}>: custom
 # Executable client_unix
-<core_test/client_unix_main.{native,byte}>: pkg_bisect
 <core_test/client_unix_main.{native,byte}>: pkg_cohttp
 <core_test/client_unix_main.{native,byte}>: pkg_re
 <core_test/client_unix_main.{native,byte}>: pkg_re.str
@@ -129,7 +122,6 @@ true: annot, bin_annot
 <core_test/client_unix_main.{native,byte}>: use_message_switch_unix
 <core_test/client_unix_main.{native,byte}>: custom
 # Executable server
-<core_test/server_main.{native,byte}>: pkg_bisect
 <core_test/server_main.{native,byte}>: pkg_cohttp
 <core_test/server_main.{native,byte}>: pkg_cohttp.lwt
 <core_test/server_main.{native,byte}>: pkg_lwt
@@ -151,7 +143,6 @@ true: annot, bin_annot
 # Executable server_async
 <core_test/server_async_main.{native,byte}>: pkg_async
 <core_test/server_async_main.{native,byte}>: pkg_async_unix
-<core_test/server_async_main.{native,byte}>: pkg_bisect
 <core_test/server_async_main.{native,byte}>: pkg_cohttp
 <core_test/server_async_main.{native,byte}>: pkg_cohttp.async
 <core_test/server_async_main.{native,byte}>: pkg_re
@@ -168,7 +159,6 @@ true: annot, bin_annot
 <core_test/*.ml{,i,y}>: use_message_switch_async
 <core_test/server_async_main.{native,byte}>: custom
 # Executable server_unix
-<core_test/server_unix_main.{native,byte}>: pkg_bisect
 <core_test/server_unix_main.{native,byte}>: pkg_cohttp
 <core_test/server_unix_main.{native,byte}>: pkg_re
 <core_test/server_unix_main.{native,byte}>: pkg_re.str
@@ -179,7 +169,6 @@ true: annot, bin_annot
 <core_test/server_unix_main.{native,byte}>: pkg_unix
 <core_test/server_unix_main.{native,byte}>: use_message_switch
 <core_test/server_unix_main.{native,byte}>: use_message_switch_unix
-<core_test/*.ml{,i,y}>: pkg_bisect
 <core_test/*.ml{,i,y}>: pkg_cohttp
 <core_test/*.ml{,i,y}>: pkg_re
 <core_test/*.ml{,i,y}>: pkg_re.str
@@ -192,7 +181,6 @@ true: annot, bin_annot
 <core_test/*.ml{,i,y}>: use_message_switch_unix
 <core_test/server_unix_main.{native,byte}>: custom
 # Executable switch
-<switch/switch_main.{native,byte}>: pkg_bisect
 <switch/switch_main.{native,byte}>: pkg_cohttp
 <switch/switch_main.{native,byte}>: pkg_cohttp.lwt
 <switch/switch_main.{native,byte}>: pkg_lwt
@@ -206,7 +194,6 @@ true: annot, bin_annot
 <switch/switch_main.{native,byte}>: use_message_switch
 <switch/switch_main.{native,byte}>: use_message_switch_lwt
 <switch/switch_main.{native,byte}>: use_message_switch_server
-<switch/*.ml{,i,y}>: pkg_bisect
 <switch/*.ml{,i,y}>: pkg_cohttp
 <switch/*.ml{,i,y}>: pkg_cohttp.lwt
 <switch/*.ml{,i,y}>: pkg_lwt
