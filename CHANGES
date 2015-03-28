@@ -1,3 +1,6 @@
+0.10.5.1 28-Mar-2015):
+* Update to Cohttp 0.15.0
+
 0.10.4 (26-Sep-2014):
 * Add Async support via protocol.async package
 * Change license to the Mirage license (ISC)

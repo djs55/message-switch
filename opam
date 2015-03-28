@@ -19,8 +19,8 @@ depends: [
   "rpc"
   "cmdliner"
   "ssl"
-  "oasis"
+  
   "async"
-  "ocveralls"
-  "bisect"
+  
+  
 ]
