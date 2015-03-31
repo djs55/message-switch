@@ -111,7 +111,6 @@ module Diagnostics : sig
 	}
 
 	type t = {
-		start_time: int64;
 		current_time: int64;
 		permanent_queues: (string * queue) list;
 		transient_queues: (string * queue) list;
