@@ -94,7 +94,7 @@ let diagnostics common_opts =
           Printf.printf "      %s\n" (if common_opts.Common.verbose || len < max_len then payload else String.sub payload 0 max_len);
           Printf.printf "        reply_to: %s\n" (kind message.Message.kind);
         ) queue.Diagnostics.queue_contents in
-    Printf.printf "Switch uptime: %s\n" (time in_the_past d.Diagnostics.start_time);
+    Printf.printf "Switch uptime: %s\n" (time (fun x -> x) d.Diagnostics.current_time);
     print_endline "Permanent queues";
     if d.Diagnostics.permanent_queues = []
     then print_endline "  None"

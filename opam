@@ -19,8 +19,11 @@ depends: [
   "rpc"
   "cmdliner"
   "ssl"
+  "mtime"
   "oasis"
-  "async"
   "ocveralls"
   "bisect"
+]
+depopts: [
+  "async"
 ]
