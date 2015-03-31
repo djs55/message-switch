@@ -20,7 +20,9 @@ depends: [
   "cmdliner"
   "ssl"
   "oasis"
-  "async"
   "ocveralls"
   "bisect"
+]
+depopts: [
+  "async"
 ]
