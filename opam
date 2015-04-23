@@ -23,8 +23,8 @@ depends: [
   "shared-block-ring"
   "cmdliner"
   "ssl"
-  "oasis"
+  
   "async"
-  "ocveralls"
-  "bisect"
+  
+  
 ]

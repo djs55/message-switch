@@ -18,49 +18,39 @@ Flag lwt
 Library message_switch
   CompiledObject:     best
   Pack:               true
-  ByteOpt:            -warn-error +a
-  NativeOpt:          -warn-error +a
   Path:               core
   Findlibname:        message_switch
   Modules:            Protocol, Make, Monad, Result, S
-  BuildDepends:       cohttp (>= 0.15.0) ,rpclib,rpclib.json,rpclib.syntax,sexplib,sexplib.syntax,re.str, bisect
+  BuildDepends:       cohttp (>= 0.15.0) ,rpclib,rpclib.json,rpclib.syntax,sexplib,sexplib.syntax,re.str
 
 Library message_switch_lwt
   Build$:             flag(lwt)
   CompiledObject:     best
-  ByteOpt:            -warn-error +a
-  NativeOpt:          -warn-error +a
   Path:               lwt
   Findlibparent:      message_switch
   Findlibname:        lwt
   Modules:            Protocol_lwt
-  BuildDepends:       lwt,lwt.unix,cohttp (>= 0.15.0),cohttp.lwt,rpclib,rpclib.json,rpclib.syntax,message_switch, bisect
+  BuildDepends:       lwt,lwt.unix,cohttp (>= 0.15.0),cohttp.lwt,rpclib,rpclib.json,rpclib.syntax,message_switch
 
 Library message_switch_async
   Build$:             flag(async)
   CompiledObject:     best
-  ByteOpt:            -warn-error +a
-  NativeOpt:          -warn-error +a
   Path:               async
   Findlibparent:      message_switch
   Findlibname:        async
   Modules:            Protocol_async
-  BuildDepends:       threads,async,cohttp (>= 0.15.0),cohttp.async,rpclib,rpclib.json,rpclib.syntax,message_switch, bisect
+  BuildDepends:       threads,async,cohttp (>= 0.15.0),cohttp.async,rpclib,rpclib.json,rpclib.syntax,message_switch
 
 Library message_switch_unix
   CompiledObject:     best
-  ByteOpt:            -warn-error +a
-  NativeOpt:          -warn-error +a
   Path:               unix
   Findlibparent:      message_switch
   Findlibname:        unix
   Modules:            Protocol_unix, Protocol_unix_scheduler
-  BuildDepends:       unix,threads,cohttp (>= 0.15.0),rpclib,rpclib.json,rpclib.syntax,message_switch, bisect
+  BuildDepends:       unix,threads,cohttp (>= 0.15.0),rpclib,rpclib.json,rpclib.syntax,message_switch
 
 Library message_switch_server
   Build$:             flag(lwt)
-  ByteOpt:            -warn-error +a
-  NativeOpt:          -warn-error +a
   CompiledObject:     best
   Pack:               true
   Install:            false
@@ -68,102 +58,84 @@ Library message_switch_server
   Findlibparent:      message_switch
   Findlibname:        server
   Modules:            Clock, Relation, Q, Logging, Switch
-  BuildDepends:       lwt,lwt.syntax,sexplib,sexplib.syntax,mtime,mtime.os,cohttp (>= 0.15.0),cohttp.lwt,rpclib,rpclib.json,rpclib.syntax,message_switch,mirage-block-unix,shared-block-ring,cmdliner,io-page.unix, bisect
+  BuildDepends:       lwt,lwt.syntax,sexplib,sexplib.syntax,mtime,mtime.os,cohttp (>= 0.15.0),cohttp.lwt,rpclib,rpclib.json,rpclib.syntax,message_switch,mirage-block-unix,shared-block-ring,cmdliner,io-page.unix
 
 Executable m_cli
   CompiledObject:     best
-  ByteOpt:            -warn-error +a
-  NativeOpt:          -warn-error +a
   Path:               cli
   MainIs:             main.ml
   Custom:             true
   Install:            false
-  BuildDepends:       message_switch, message_switch.unix, cmdliner, bisect
+  BuildDepends:       message_switch, message_switch.unix, cmdliner
 
 Executable link_test
   Build$:             flag(lwt)&&flag(tests)
-  ByteOpt:            -warn-error +a
-  NativeOpt:          -warn-error +a
   CompiledObject:     best
   Path:               core_test
   MainIs:             link_test_main.ml
   Custom:             true
   Install:            false
-  BuildDepends:       message_switch, message_switch.lwt, lwt, lwt.unix, lwt.syntax, cohttp, cohttp.lwt, bisect
+  BuildDepends:       message_switch, message_switch.lwt, lwt, lwt.unix, lwt.syntax, cohttp, cohttp.lwt
 
 Executable client
   Build$:             flag(lwt)&&flag(tests)
-  ByteOpt:            -warn-error +a
-  NativeOpt:          -warn-error +a
   CompiledObject:     best
   Path:               core_test
   MainIs:             client_main.ml
   Custom:             true
   Install:            false
-  BuildDepends:       message_switch, message_switch.lwt, lwt, lwt.unix, lwt.syntax, cohttp, cohttp.lwt, bisect
+  BuildDepends:       message_switch, message_switch.lwt, lwt, lwt.unix, lwt.syntax, cohttp, cohttp.lwt
 
 Executable client_async
   Build$:             flag(async)&&flag(tests)
-  ByteOpt:            -warn-error +a
-  NativeOpt:          -warn-error +a
   CompiledObject:     best
   Path:               core_test
   MainIs:             client_async_main.ml
   Custom:             true
   Install:            false
-  BuildDepends:       message_switch, message_switch.async, async, async_unix, threads, cohttp, cohttp.async, bisect
+  BuildDepends:       message_switch, message_switch.async, async, async_unix, threads, cohttp, cohttp.async
 
 Executable client_unix
   CompiledObject:     best
-  ByteOpt:            -warn-error +a
-  NativeOpt:          -warn-error +a
   Path:               core_test
   MainIs:             client_unix_main.ml
   Build$:             flag(tests)
   Custom:             true
   Install:            false
-  BuildDepends:       message_switch, message_switch.unix, cohttp, bisect
+  BuildDepends:       message_switch, message_switch.unix, cohttp
 
 Executable server
   Build$:             flag(lwt)&&flag(tests)
-  ByteOpt:            -warn-error +a
-  NativeOpt:          -warn-error +a
   CompiledObject:     best
   Path:               core_test
   MainIs:             server_main.ml
   Custom:             true
   Install:            false
-  BuildDepends:       message_switch, message_switch.lwt, lwt, lwt.unix, lwt.syntax, cohttp, cohttp.lwt, cmdliner, bisect
+  BuildDepends:       message_switch, message_switch.lwt, lwt, lwt.unix, lwt.syntax, cohttp, cohttp.lwt, cmdliner
 
 Executable server_async
   Build$:             flag(async)&&flag(tests)
-  ByteOpt:            -warn-error +a
-  NativeOpt:          -warn-error +a
   CompiledObject:     best
   Path:               core_test
   MainIs:             server_async_main.ml
   Custom:             true
   Install:            false
-  BuildDepends:       message_switch, message_switch.async, async, async_unix, threads, cohttp, cohttp.async, bisect
+  BuildDepends:       message_switch, message_switch.async, async, async_unix, threads, cohttp, cohttp.async
 
 Executable server_unix
   CompiledObject:     best
-  ByteOpt:            -warn-error +a
-  NativeOpt:          -warn-error +a
   Path:               core_test
   MainIs:             server_unix_main.ml
   Build$:             flag(tests)
   Custom:             true
   Install:            false
-  BuildDepends:       message_switch, message_switch.unix, bisect
+  BuildDepends:       message_switch, message_switch.unix
 
 Executable switch
   Build$:             flag(lwt)
-  ByteOpt:            -warn-error +a
-  NativeOpt:          -warn-error +a
   CompiledObject:     best
   Path:               switch
   MainIs:             switch_main.ml
   Custom:             true
   Install:            false
-  BuildDepends:       message_switch, message_switch.lwt, message_switch.server, lwt, lwt.unix, lwt.syntax, cohttp, cohttp.lwt, bisect
+  BuildDepends:       message_switch, message_switch.lwt, message_switch.server, lwt, lwt.unix, lwt.syntax, cohttp, cohttp.lwt
