@@ -23,7 +23,7 @@ depends: [
   "shared-block-ring"
   "cmdliner"
   "ssl"
-  "oasis"
+  
   "async"
-  "bisect"
+  
 ]

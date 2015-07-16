@@ -1,0 +1,60 @@
+# OASIS_START
+# DO NOT EDIT (digest: 64e44ff12909b37c9c5b96f1cf6a6ed8)
+version = "0.12.0"
+description = "A simple store-and-forward message switch"
+requires =
+"cohttp rpclib rpclib.json rpclib.syntax sexplib sexplib.syntax re.str"
+archive(byte) = "message_switch.cma"
+archive(byte, plugin) = "message_switch.cma"
+archive(native) = "message_switch.cmxa"
+archive(native, plugin) = "message_switch.cmxs"
+exists_if = "message_switch.cma"
+package "unix" (
+ version = "0.12.0"
+ description = "A simple store-and-forward message switch"
+ requires =
+ "unix threads cohttp rpclib rpclib.json rpclib.syntax message_switch"
+ archive(byte) = "message_switch_unix.cma"
+ archive(byte, plugin) = "message_switch_unix.cma"
+ archive(native) = "message_switch_unix.cmxa"
+ archive(native, plugin) = "message_switch_unix.cmxs"
+ exists_if = "message_switch_unix.cma"
+)
+
+package "server" (
+ version = "0.12.0"
+ description = "A simple store-and-forward message switch"
+ requires =
+ "lwt lwt.syntax sexplib sexplib.syntax mtime mtime.os cohttp cohttp.lwt rpclib rpclib.json rpclib.syntax message_switch mirage-block-unix shared-block-ring cmdliner io-page.unix"
+ archive(byte) = "message_switch_server.cma"
+ archive(byte, plugin) = "message_switch_server.cma"
+ archive(native) = "message_switch_server.cmxa"
+ archive(native, plugin) = "message_switch_server.cmxs"
+ exists_if = "message_switch_server.cma"
+)
+
+package "lwt" (
+ version = "0.12.0"
+ description = "A simple store-and-forward message switch"
+ requires =
+ "lwt lwt.unix cohttp cohttp.lwt rpclib rpclib.json rpclib.syntax message_switch"
+ archive(byte) = "message_switch_lwt.cma"
+ archive(byte, plugin) = "message_switch_lwt.cma"
+ archive(native) = "message_switch_lwt.cmxa"
+ archive(native, plugin) = "message_switch_lwt.cmxs"
+ exists_if = "message_switch_lwt.cma"
+)
+
+package "async" (
+ version = "0.12.0"
+ description = "A simple store-and-forward message switch"
+ requires =
+ "threads async cohttp cohttp.async rpclib rpclib.json rpclib.syntax message_switch"
+ archive(byte) = "message_switch_async.cma"
+ archive(byte, plugin) = "message_switch_async.cma"
+ archive(native) = "message_switch_async.cmxa"
+ archive(native, plugin) = "message_switch_async.cmxs"
+ exists_if = "message_switch_async.cma"
+)
+# OASIS_STOP
+
