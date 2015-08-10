@@ -234,6 +234,8 @@ module type S = sig
 
     val map: ('a -> 'b) -> 'a t -> 'b t
 
+    val iter: ('a -> unit t) -> 'a list -> unit t
+
     val any: 'a t list -> 'a t
 
     val is_determined: 'a t -> bool
