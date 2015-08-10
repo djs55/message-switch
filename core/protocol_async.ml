@@ -54,8 +54,7 @@ module M = struct
     retry 1.
 
   let disconnect (_, writer) =
-    Writer.close writer;
-    return ()
+    Writer.close writer
 
   module Ivar = struct
     include Ivar
